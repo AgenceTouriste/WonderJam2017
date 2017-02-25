@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class InteractionScript : MonoBehaviour
 {
 
-
     public float InteractivityRange = 1000;
     public float DeadzoneRange = 100;
 
@@ -85,6 +84,7 @@ public class InteractionScript : MonoBehaviour
     /// </summary>
     void OnMouseDown()
     {
+        //Debug.Log("mousedown");
         transform.GetChild(0).gameObject.SetActive(true);
     }
 
@@ -96,6 +96,7 @@ public class InteractionScript : MonoBehaviour
     {
         CloseMenu();
     }
+    
 
 }
 
