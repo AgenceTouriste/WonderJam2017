@@ -6,13 +6,17 @@ public class StatePatternEnemy : MonoBehaviour
 {
     public float searchingTurnSpeed = 120f;
     public float searchingDuration = 4f;
-    public float sightRange = 20f;
     public Transform[] wayPoints;
-    public Transform eyes;
-    public Vector3 offset = new Vector3(0, .5f, 0);
     public int direction = 0;
+    public Transform camp;
+    public float waitO;
+    public float waitD;
+    public float waitB;
+    public float waitL;
 
 
+    [HideInInspector]
+    public float curTime;
     [HideInInspector]
     public Transform chaseTarget;
     [HideInInspector]
@@ -24,6 +28,10 @@ public class StatePatternEnemy : MonoBehaviour
     [HideInInspector]
     public PatrolState patrolState;
     [HideInInspector]
+    public OrderState orderState;
+    [HideInInspector]
+    public OWaiterState owaiterState;
+    [HideInInspector]
     public UnityEngine.AI.NavMeshAgent navMeshAgent;
 
     private void Awake()
@@ -31,6 +39,8 @@ public class StatePatternEnemy : MonoBehaviour
         chaseState = new ChaseState(this);
         alertState = new AlertState(this);
         patrolState = new PatrolState(this);
+        orderState = new OrderState(this);
+        owaiterState = new OWaiterState(this);
 
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
