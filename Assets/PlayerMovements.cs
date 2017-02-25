@@ -8,10 +8,12 @@ public class PlayerMovements : MonoBehaviour
     public float speed = 6.0F;
     public float maxSpeed = 20.0F;
     private Vector3 moveDirection = Vector3.zero;
+    public Rigidbody rb;
 
 
     void Start()
     {
+        
     }
 
     void FixedUpdate()
@@ -22,24 +24,25 @@ public class PlayerMovements : MonoBehaviour
 
     public void MoveForward()
     {
-
-        if (Input.GetKey("up"))//Press up arrow key to move forward on the Y AXIS
+        Vector3 force = Vector3.zero;
+        if (Input.GetAxis("Vertical") > 0)
         {
-            transform.Translate(0, speed * Time.fixedDeltaTime, 0);
+            force += Vector3.forward * speed;
         }
-        if (Input.GetKey("down"))//Press up arrow key to move forward on the Y AXIS
+        if (Input.GetAxis("Vertical") < 0)
         {
-            transform.Translate(0, -speed * Time.fixedDeltaTime, 0);
+            force += Vector3.back * speed;
         }
-        if (Input.GetKey("right"))//Press up arrow key to move forward on the Y AXIS
+        if (Input.GetAxis("Horizontal") > 0)
         {
-            transform.Translate(speed * Time.fixedDeltaTime, 0, 0);
+            force += Vector3.right * speed;
         }
-        if (Input.GetKey("left"))//Press up arrow key to move forward on the Y AXIS
+        if (Input.GetAxis("Horizontal") < 0)
         {
-            transform.Translate(-speed * Time.fixedDeltaTime, 0, 0);
+            force += Vector3.left * speed;
         }
-        
+        force = Vector3.ClampMagnitude(force, speed);
+        rb.AddForce(force);
 
     }
 
