@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PatrolState : IEnemyState
 
@@ -31,21 +32,34 @@ public class PatrolState : IEnemyState
     }
 
     public void ToAlertState()
-    {
-        enemy.currentState = enemy.alertState;
-    }
+    {}
+
     public void ToChaseState()
     {
         enemy.currentState = enemy.chaseState;
     }
 
+    public void ToOrderState()
+    {
+        Debug.Log("le bouton");
+        enemy.currentState = enemy.orderState;
+    }
+
+    public void ToOWaiterState()
+    {
+        Debug.Log("Can't transition to this state");
+    }
+
     private void Look()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(enemy.eyes.transform.position, enemy.eyes.transform.forward, out hit, enemy.sightRange) && hit.collider.CompareTag("Player"))
+        List<Transform> visibleobjects = enemy.GetComponent<FieldOfView>().visibleTargets;
+        foreach (Transform obj in visibleobjects)
         {
-            enemy.chaseTarget = hit.transform;
-            ToChaseState();
+            if (obj.CompareTag("Player"))
+            {
+                enemy.chaseTarget = obj;
+                ToChaseState();
+            }
         }
     }
 
@@ -80,7 +94,10 @@ public class PatrolState : IEnemyState
                 }
             }
         }
+    }
 
-
+    public void Order()
+    {
+        ToOrderState();
     }
 }
