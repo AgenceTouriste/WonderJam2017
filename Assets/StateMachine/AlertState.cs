@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 using System.Collections;
 
 public class AlertState : IEnemyState
@@ -52,8 +53,8 @@ public class AlertState : IEnemyState
 
     private void Search()
     {
-        enemy.meshRendererFlag.material.color = Color.yellow;
-        enemy.navMeshAgent.Stop();
+        enemy.GetComponent<MeshRenderer>().material.color = Color.yellow;
+        enemy.GetComponent<NavMeshAgent>().Stop();
         enemy.transform.Rotate(0, enemy.searchingTurnSpeed * Time.deltaTime, 0);
         searchTimer += Time.deltaTime;
 

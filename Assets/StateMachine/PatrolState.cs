@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 using System.Collections;
 
 public class PatrolState : IEnemyState
@@ -33,7 +34,6 @@ public class PatrolState : IEnemyState
     {
         enemy.currentState = enemy.alertState;
     }
-
     public void ToChaseState()
     {
         enemy.currentState = enemy.chaseState;
@@ -51,23 +51,23 @@ public class PatrolState : IEnemyState
 
     void Patrol()
     {
-        enemy.meshRendererFlag.material.color = Color.green;
+        enemy.GetComponent<MeshRenderer>().material.color = Color.green;
         if (enemy.wayPoints.Length > 1)
         {
-            enemy.navMeshAgent.destination = enemy.wayPoints[nextWayPoint].position;
-            enemy.navMeshAgent.Resume();
+            enemy.GetComponent<NavMeshAgent>().destination = enemy.wayPoints[nextWayPoint].position;
+            enemy.GetComponent<NavMeshAgent>().Resume();
 
-            if (enemy.navMeshAgent.remainingDistance <= enemy.navMeshAgent.stoppingDistance && !enemy.navMeshAgent.pathPending)
+            if (enemy.GetComponent<NavMeshAgent>().remainingDistance <= enemy.GetComponent<NavMeshAgent>().stoppingDistance && !enemy.GetComponent<NavMeshAgent>().pathPending)
             {
                 nextWayPoint = (nextWayPoint + 1) % enemy.wayPoints.Length;
             }
         }
         else
         {
-            enemy.navMeshAgent.destination = enemy.wayPoints[0].position;
-            enemy.navMeshAgent.Resume();
+            enemy.GetComponent<NavMeshAgent>().destination = enemy.wayPoints[0].position;
+            enemy.GetComponent<NavMeshAgent>().Resume();
 
-            if (enemy.navMeshAgent.remainingDistance <= enemy.navMeshAgent.stoppingDistance && !enemy.navMeshAgent.pathPending)
+            if (enemy.GetComponent<NavMeshAgent>().remainingDistance <= enemy.GetComponent<NavMeshAgent>().stoppingDistance && !enemy.GetComponent<NavMeshAgent>().pathPending)
             {
                 Vector3 to = new Vector3(0, enemy.direction , 0);
                 if (Vector3.Distance(enemy.transform.eulerAngles, to) > 0.01f)

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 using System.Collections;
 
 public class StatePatternEnemy : MonoBehaviour
@@ -9,7 +10,6 @@ public class StatePatternEnemy : MonoBehaviour
     public Transform[] wayPoints;
     public Transform eyes;
     public Vector3 offset = new Vector3(0, .5f, 0);
-    public MeshRenderer meshRendererFlag;
     public int direction = 0;
 
 
@@ -32,7 +32,7 @@ public class StatePatternEnemy : MonoBehaviour
         alertState = new AlertState(this);
         patrolState = new PatrolState(this);
 
-        navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     // Use this for initialization
