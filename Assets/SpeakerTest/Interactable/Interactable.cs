@@ -4,18 +4,16 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-    public CircleCollider2D clickableArea;
-
-    public Sprite inactive;
-    public Sprite active;
-    SpriteRenderer spriteRenderer;
+    public SphereCollider clickableArea;
+    
+    MeshFilter meshFilter;
 
     //ToDo Change type
     private HashSet<GameObject> affectableAgents;
 
     public virtual void Start()
     {
-        spriteRenderer = this.GetComponent<SpriteRenderer>();
+        meshFilter = this.GetComponent<MeshFilter>();
     }
 
     void FixedUpdate()
@@ -35,7 +33,6 @@ public abstract class Interactable : MonoBehaviour
 
     public virtual void OnClickStart()
     {
-        spriteRenderer.sprite = active;
         foreach (var agent in affectableAgents)
         {
             //ToDo change their color
@@ -45,7 +42,7 @@ public abstract class Interactable : MonoBehaviour
 
     public virtual void OnClickEnd()
     {
-        spriteRenderer.sprite = inactive;
+
         foreach (var agent in affectableAgents)
         {
             //ToDo revert their color to normal

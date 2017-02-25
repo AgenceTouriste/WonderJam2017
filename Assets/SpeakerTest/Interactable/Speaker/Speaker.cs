@@ -3,19 +3,19 @@ using UnityEngine;
 
 class Speaker : Interactable
 {
-    public Collider2D areaOfEffect;
+    public SphereCollider areaOfEffect;
 
     public override void Start()
     {
         base.Start();
     }
     
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter(Collider other)
     {
         RegisterAgent(other.gameObject);
     }
 
-    void OnTriggerExit2D(Collider2D other)
+    void OnTriggerExit(Collider other)
     {
         UnregisterAgent(other.gameObject);
     }

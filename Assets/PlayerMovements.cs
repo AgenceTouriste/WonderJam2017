@@ -6,10 +6,10 @@ public class PlayerMovements : MonoBehaviour
 {
     //Inspector Variables
     public float speed = 6.0F;
+    public float slowdown;
     public float maxSpeed = 20.0F;
-    private Vector3 moveDirection = Vector3.zero;
     public Rigidbody rb;
-
+    private bool hasSlowdown = true;
 
     void Start()
     {
@@ -18,7 +18,6 @@ public class PlayerMovements : MonoBehaviour
     void FixedUpdate()
     {
         MoveForward();
-
     }
 
     public void MoveForward()
@@ -40,8 +39,13 @@ public class PlayerMovements : MonoBehaviour
         {
             force += Vector3.left * speed;
         }
-        force = Vector3.ClampMagnitude(force, speed);
+        if(force.magnitude==0)
+        {
+            rb.velocity = Vector3.zero;
+        }
+        force = Vector3.ClampMagnitude(force,speed);
         rb.AddForce(force);
+
     }
 
 }
