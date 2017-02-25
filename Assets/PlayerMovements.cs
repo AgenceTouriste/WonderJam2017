@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +13,6 @@ public class PlayerMovements : MonoBehaviour
 
     void Start()
     {
-        
     }
 
     void FixedUpdate()
@@ -43,7 +42,6 @@ public class PlayerMovements : MonoBehaviour
         }
         force = Vector3.ClampMagnitude(force, speed);
         rb.AddForce(force);
-
     }
 
 }
