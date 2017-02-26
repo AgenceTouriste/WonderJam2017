@@ -47,12 +47,11 @@ public class Blame : Action
 
     public void OnBizutFound(GameObject input)
     {
-        if (gameObject.activeSelf)
         {
             bizut = input;
             actionManager.SendMessage("SpecialBlameExecutor");
             overlay.gameObject.SetActive(false);
-            gameObject.GetComponentInParent<Canvas>().enabled = true;
+            gameObject.GetComponentsInParent<Canvas>(true)[0].enabled = true;
             ready = false;
         }
     }
@@ -62,7 +61,7 @@ public class Blame : Action
         ready = true;
         overlay.gameObject.SetActive(true);
         blameSelector.gameObject.SetActive(true);
-        gameObject.GetComponentInParent<Canvas>().enabled = false;
+        gameObject.GetComponentsInParent<Canvas>(true)[0].enabled = false;
     }
     public override void OnPointerExit(PointerEventData eventData)
     {
