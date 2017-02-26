@@ -23,31 +23,29 @@ public class OrderState : IEnemyState
     { }
 
     public void ToPatrolState()
-    {
-        Debug.Log("Can't transition to this state");
-    }
+    { }
 
     public void ToAlertState()
-    {}
+    { }
     public void ToChaseState()
     {
+        enemy.GetComponent<Animator>().SetBool("isMoving", false);
+        enemy.GetComponent<Animator>().SetBool("isRunning", true);
         enemy.currentState = enemy.chaseState;
     }
 
     public void ToOrderState()
-    {
-        Debug.Log("Can't transition to same state");
-    }
+    { }
 
     public void ToOWaiterState()
     {
+        enemy.GetComponent<Animator>().SetBool("isMoving", false);
+        enemy.GetComponent<Animator>().SetBool("isRunning", false);
         enemy.currentState = enemy.owaiterState;
     }
 
     public void ToDistractState()
-    {
-        enemy.currentState = enemy.distractState;
-    }
+    { }
 
     public void ToDWaiterState()
     { }
@@ -61,18 +59,7 @@ public class OrderState : IEnemyState
     public void ToLarsenState()
     { }
 
-    /*private void Look()
-    {
-        List<Transform> visibleobjects = enemy.GetComponent<FieldOfView>().visibleTargets;
-        foreach (Transform obj in visibleobjects)
-        {
-            if (obj.CompareTag("Player"))
-            {
-                enemy.chaseTarget = obj;
-                ToChaseState();
-            }
-        }
-    }*/
+
 
     private void Look()
     {
@@ -95,7 +82,6 @@ public class OrderState : IEnemyState
         enemy.GetComponent<NavMeshAgent>().destination = enemy.camp.position;
         enemy.GetComponent<NavMeshAgent>().Resume();
         if (Vector3.Distance(enemy.camp.position, enemy.transform.position) < 4)
-        //if (enemy.GetComponent<NavMeshAgent>().remainingDistance <= enemy.GetComponent<NavMeshAgent>().stoppingDistance && !enemy.GetComponent<NavMeshAgent>().pathPending)
         {
             enemy.curTime = Time.time;
             ToOWaiterState();

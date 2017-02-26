@@ -25,31 +25,32 @@ public class PatrolState : IEnemyState
     { }
 
     public void ToPatrolState()
-    {
-        Debug.Log("Can't transition to same state");
-    }
+    { }
 
     public void ToAlertState()
-    {}
+    { }
 
     public void ToChaseState()
     {
+        enemy.GetComponent<Animator>().SetBool("isMoving", false);
+        enemy.GetComponent<Animator>().SetBool("isRunning", true);
         enemy.currentState = enemy.chaseState;
     }
 
     public void ToOrderState()
     {
-        Debug.Log("le bouton");
+        enemy.GetComponent<Animator>().SetBool("isMoving", true);
+        enemy.GetComponent<Animator>().SetBool("isRunning", false);
         enemy.currentState = enemy.orderState;
     }
 
     public void ToOWaiterState()
-    {
-        Debug.Log("Can't transition to this state");
-    }
+    { }
 
     public void ToDistractState()
     {
+        enemy.GetComponent<Animator>().SetBool("isMoving", true);
+        enemy.GetComponent<Animator>().SetBool("isRunning", false);
         enemy.currentState = enemy.distractState;
     }
 
@@ -58,20 +59,26 @@ public class PatrolState : IEnemyState
 
     public void ToBlamerState()
     {
+        enemy.GetComponent<Animator>().SetBool("isMoving", false);
+        enemy.GetComponent<Animator>().SetBool("isRunning", true);
         enemy.currentState = enemy.blamerState;
     }
 
     public void ToVictimeState()
     {
+        enemy.GetComponent<Animator>().SetBool("isMoving", true);
+        enemy.GetComponent<Animator>().SetBool("isRunning", false);
         enemy.currentState = enemy.victimeState;
     }
 
     public void ToLarsenState()
     {
+        enemy.GetComponent<Animator>().SetBool("isMoving", false);
+        enemy.GetComponent<Animator>().SetBool("isRunning", false);
         enemy.currentState = enemy.larsenState;
     }
 
-   
+
     private void Look()
     {
         bool found = false;
@@ -108,7 +115,7 @@ public class PatrolState : IEnemyState
 
             if (enemy.GetComponent<NavMeshAgent>().remainingDistance <= enemy.GetComponent<NavMeshAgent>().stoppingDistance && !enemy.GetComponent<NavMeshAgent>().pathPending)
             {
-                Vector3 to = new Vector3(0, enemy.direction , 0);
+                Vector3 to = new Vector3(0, enemy.direction, 0);
                 if (Vector3.Distance(enemy.transform.eulerAngles, to) > 0.01f)
                 {
                     enemy.transform.eulerAngles = Vector3.Lerp(enemy.transform.rotation.eulerAngles, to, Time.deltaTime);
@@ -123,20 +130,16 @@ public class PatrolState : IEnemyState
 
     public void Order()
     {
-        if ((enemy.GetComponent<StatePatternEnemy>().currentState == enemy.GetComponent<StatePatternEnemy>().patrolState) 
-            //|| (enemy.GetComponent<StatePatternEnemy>().currentState == enemy.GetComponent<StatePatternEnemy>().owaiterState)
-            // A debloquer après confiance
+        if ((enemy.GetComponent<StatePatternEnemy>().currentState == enemy.GetComponent<StatePatternEnemy>().patrolState)
             )
         {
             ToOrderState();
-        }           
+        }
     }
 
     public void Distract()
     {
         if ((enemy.GetComponent<StatePatternEnemy>().currentState == enemy.GetComponent<StatePatternEnemy>().patrolState)
-            //|| (enemy.GetComponent<StatePatternEnemy>().currentState == enemy.GetComponent<StatePatternEnemy>().owaiterState)
-            // A debloquer après confiance
             )
         {
             ToDistractState();
@@ -146,8 +149,6 @@ public class PatrolState : IEnemyState
     public void Blame()
     {
         if ((enemy.GetComponent<StatePatternEnemy>().currentState == enemy.GetComponent<StatePatternEnemy>().patrolState)
-            //|| (enemy.GetComponent<StatePatternEnemy>().currentState == enemy.GetComponent<StatePatternEnemy>().owaiterState)
-            // A debloquer après confiance
             )
         {
             enemy.curTime = Time.time;
@@ -158,8 +159,6 @@ public class PatrolState : IEnemyState
     public void Victimize()
     {
         if ((enemy.GetComponent<StatePatternEnemy>().currentState == enemy.GetComponent<StatePatternEnemy>().patrolState)
-            //|| (enemy.GetComponent<StatePatternEnemy>().currentState == enemy.GetComponent<StatePatternEnemy>().owaiterState)
-            // A debloquer après confiance
             )
         {
             enemy.curTime = Time.time;
@@ -174,7 +173,7 @@ public class PatrolState : IEnemyState
         enemy.angleofview = enemy.GetComponent<FieldOfView>().viewRadius;
         enemy.GetComponent<FieldOfView>().viewRadius = 0;
         enemy.curTime = Time.time;
-        ToLarsenState();   
+        ToLarsenState();
     }
 
 }

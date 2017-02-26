@@ -253,11 +253,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 75447557}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf2be2b86e1e4dc40bb1f0cb20bfaa33, type: 3}
+  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  victim: {fileID: 0}
-  bully: {fileID: 0}
 --- !u!1 &79119822
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,12 +390,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 180262701}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8d9b700a4c6b554a87a9cba6150e22a, type: 3}
+  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  larsened:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &308859307
 GameObject:
   m_ObjectHideFlags: 0
@@ -1819,12 +1814,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1873657390}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f05905cfbde15e429f2ab1572a59808, type: 3}
+  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  Interactive: {fileID: 79119826}
-  enemies:
-  - {fileID: 0}
 --- !u!1 &1919630618
 GameObject:
   m_ObjectHideFlags: 0
@@ -1862,10 +1854,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1919630618}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d9925af782210040b172567f9cc37bc, type: 3}
+  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
 --- !u!1 &1963187527
 GameObject:
   m_ObjectHideFlags: 0
