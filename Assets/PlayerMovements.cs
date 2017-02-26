@@ -6,13 +6,13 @@ public class PlayerMovements : MonoBehaviour
 {
     //Inspector Variables
     public float speed = 6.0F;
-    public float slowdown;
     public float maxSpeed = 20.0F;
-    public Rigidbody rb;
+    private Rigidbody rb;
     private bool hasSlowdown = true;
 
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate()

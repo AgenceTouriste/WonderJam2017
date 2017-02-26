@@ -9,12 +9,12 @@ class Screen : Interactable
         base.Start();
     }
 
-    public new void RegisterAgent(GameObject agent)
+    public new void RegisterAgent(StatePatternEnemy agent)
     {
         base.RegisterAgent(agent);
     }
 
-    public new void UnregisterAgent(GameObject agent)
+    public new void UnregisterAgent(StatePatternEnemy agent)
     {
         base.UnregisterAgent(agent);
     }
