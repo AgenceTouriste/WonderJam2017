@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-class Speaker : Interactable
+public class Speaker : Interactable
 {
     public override void Start()
     {
