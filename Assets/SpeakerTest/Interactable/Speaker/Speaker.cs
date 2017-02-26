@@ -3,20 +3,22 @@ using UnityEngine;
 
 class Speaker : Interactable
 {
-    public SphereCollider areaOfEffect;
-
     public override void Start()
     {
         base.Start();
-    }
-    
+    }   
+
     void OnTriggerEnter(Collider other)
     {
-        RegisterAgent(other.gameObject);
+        Debug.Log("Hi there", other.gameObject);
+        if(other.CompareTag("Enemy"))
+        RegisterAgent(other.GetComponent<StatePatternEnemy>());
     }
 
     void OnTriggerExit(Collider other)
     {
-        UnregisterAgent(other.gameObject);
+        Debug.Log("Ciao", other.gameObject);
+        if (other.CompareTag("Enemy"))
+            UnregisterAgent(other.GetComponent<StatePatternEnemy>());
     }
 }

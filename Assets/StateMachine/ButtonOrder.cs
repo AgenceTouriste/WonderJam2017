@@ -14,10 +14,6 @@ public class ButtonOrder : MonoBehaviour {
 
     public void Order()
     {
-        if(enemy.GetComponent<StatePatternEnemy>().currentState == enemy.GetComponent<StatePatternEnemy>().patrolState)
-        {
             enemy.GetComponent<StatePatternEnemy>().patrolState.Order();
-        }
-        
     }
 }
