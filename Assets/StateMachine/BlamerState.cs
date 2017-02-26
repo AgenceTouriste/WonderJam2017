@@ -89,8 +89,6 @@ public class BlamerState : IEnemyState
 
     void OrderGoto()
     {
-        enemy.flag.GetComponent<MeshRenderer>().material.color = Color.magenta;
-        //enemy.GetComponent<MeshRenderer>().material.color = Color.magenta;
         if (Time.time - enemy.curTime >= enemy.waitB)
         {
             ToPatrolState();
