@@ -29,5 +29,6 @@ public class DeathScreen : MonoBehaviour {
     {
         ds.SetActive(true);
         isDead = true;
+        GameObject.Find("SoundSystem").GetComponent<SoundSystem>().PlayGameOver();
     }
 }
