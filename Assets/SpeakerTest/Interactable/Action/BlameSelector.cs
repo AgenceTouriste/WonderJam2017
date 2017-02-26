@@ -13,8 +13,8 @@ public class BlameSelector : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            LayerMask mask = LayerMask.NameToLayer("Ennemies");
-            if (Physics.Raycast(ray, out hit, 100,mask))
+            LayerMask mask = LayerMask.NameToLayer("Enemies");
+            if (Physics.Raycast(ray, out hit))
             {
                 GameObject tmp = hit.collider.gameObject;
                 if(tmp.GetComponent<StatePatternEnemy>().currentState is PatrolState)

@@ -97,7 +97,7 @@ public class DistractState : IEnemyState
         //enemy.GetComponent<MeshRenderer>().material.color = Color.black;
         enemy.GetComponent<NavMeshAgent>().destination = enemy.distraction.position;
         enemy.GetComponent<NavMeshAgent>().Resume();
-        if (Vector3.Distance(enemy.distraction.position,enemy.transform.position)<2)
+        if (Vector3.Distance(enemy.distraction.position,enemy.transform.position)<4)
         //if (enemy.GetComponent<NavMeshAgent>().remainingDistance <= enemy.GetComponent<NavMeshAgent>().stoppingDistance && !enemy.GetComponent<NavMeshAgent>().pathPending)
         {
             enemy.curTime = Time.time;

@@ -28,7 +28,7 @@ public class StatePatternEnemy : MonoBehaviour
     public Transform distraction;
     [HideInInspector]
     public float curTime;
-    [HideInInspector]
+    [HideInInspector]   
     public Transform chaseTarget;
     [HideInInspector]
     public IEnemyState currentState;
