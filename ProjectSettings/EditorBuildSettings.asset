@@ -5,13 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Maps/BlameScene.unity
-  - enabled: 1
-    path: Assets/Maps/DifficultScene.unity
   - enabled: 1
     path: Assets/Maps/DistractScene.unity
   - enabled: 1
     path: Assets/Maps/OrderScene.unity
   - enabled: 1
     path: Assets/Maps/LarsenScene.unity
+  - enabled: 1
+    path: Assets/Maps/BlameSceneClean.unity
+  - enabled: 1
+    path: Assets/Maps/DifficultSceneClean.unity

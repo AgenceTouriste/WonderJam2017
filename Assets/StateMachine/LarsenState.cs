@@ -27,6 +27,8 @@ public class LarsenState : IEnemyState
 
     public void ToAlertState()
     {
+        enemy.GetComponent<Animator>().SetBool("isMoving", false);
+        enemy.GetComponent<Animator>().SetBool("isRunning", false);
         enemy.currentState = enemy.alertState;
     }
     public void ToChaseState()
