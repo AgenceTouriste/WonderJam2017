@@ -1286,6 +1286,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1430323150}
+--- !u!1 &1434000695 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1795857814985206, guid: 73a12e314299fb944aaa10b3f5400b38,
+    type: 2}
+  m_PrefabInternal: {fileID: 1436825888}
 --- !u!1001 &1436825888
 Prefab:
   m_ObjectHideFlags: 0
@@ -1329,6 +1334,11 @@ Prefab:
       propertyPath: m_Name
       value: Speaker (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114908964045427506, guid: 73a12e314299fb944aaa10b3f5400b38,
+        type: 2}
+      propertyPath: toDestroy
+      value: 
+      objectReference: {fileID: 1434000695}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73a12e314299fb944aaa10b3f5400b38, type: 2}
   m_IsPrefabParent: 0
