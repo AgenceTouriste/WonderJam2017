@@ -21,6 +21,12 @@ public class InteractableUI : MonoBehaviour {
     private void OnMouseDown()
     {
         UI.SetActive(true);
+        BroadcastMessage("TriggerAoE");
+    }
+
+    private void HeyAoE()
+    {
+        BroadcastMessage("TriggerAoE");
     }
 
     private void OnMouseUp()
