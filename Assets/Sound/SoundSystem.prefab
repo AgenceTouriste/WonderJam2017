@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   larsenclips:
-  - {fileID: 8300000, guid: 7143fc51d2311854e9b9118229c04ccc, type: 3}
+  - {fileID: 8300000, guid: 11f2875b55963384b8e800d2027149b4, type: 3}
   distractclips:
   - {fileID: 8300000, guid: 893062ff88e951446aba9d1109cf2853, type: 3}
   - {fileID: 8300000, guid: 208a5497a37dcea4087eca840b7c0677, type: 3}

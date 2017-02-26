@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,10 @@ public class Larsen : Action
             stuned.patrolState.Larsen();
         }
         GameObject.Find("SoundSystem").GetComponent<SoundSystem>().PlayLarsen();
-        Destroy(toDestroy,4);
+        toDestroy.GetComponentInChildren<Canvas>().enabled = false;
+        toDestroy.GetComponentInChildren<MeshRenderer>().enabled = false;
     }
+
+    
 }
 
