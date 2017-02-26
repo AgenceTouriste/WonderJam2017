@@ -20,10 +20,8 @@ public class ChaseState : IEnemyState
         Chase();
     }
 
-  /*  public void OnTriggerEnter(Collider other)
-    {
-
-    }*/
+    public void OnTriggerEnter(Collider other)
+    { }
 
     public void ToPatrolState()
     {}
@@ -45,6 +43,21 @@ public class ChaseState : IEnemyState
     {
         Debug.Log("Can't transition to this state");
     }
+
+    public void ToDistractState()
+    {}
+
+    public void ToDWaiterState()
+    { }
+
+    public void ToBlamerState()
+    { }
+
+    public void ToVictimeState()
+    { }
+
+    public void ToLarsenState()
+    { }
 
     private void Look()
     {

@@ -8,6 +8,7 @@ public class InteractionScript : MonoBehaviour
 
     public float InteractivityRange = 1000;
     public float DeadzoneRange = 100;
+    public float dist;
 
     // Use this for initialization
     void Start()
@@ -19,10 +20,10 @@ public class InteractionScript : MonoBehaviour
     {
         if (transform.GetChild(0).gameObject.activeSelf)
         {
-            Button[] Buttons = this.GetComponentsInChildren<Button>();
+            Action[] Buttons = this.GetComponentsInChildren<Action>();
 
-            float distanceToCenter = Vector2.Distance((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition), (Vector2)transform.position);
-
+            float distanceToCenter = Vector3.Distance(Vector3.ProjectOnPlane(Vector3.up,Camera.main.ScreenToWorldPoint(Input.mousePosition)), Vector3.ProjectOnPlane(Vector3.up,transform.position));
+            dist = distanceToCenter;    
             if (distanceToCenter > InteractivityRange)
             {
                 CloseMenu();
@@ -34,7 +35,7 @@ public class InteractionScript : MonoBehaviour
                 int j = 0;
                 while (i < Buttons.Length)
                 {
-                    float distance = Vector2.Distance((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition), (Vector2)Buttons[i].gameObject.GetComponent<Transform>().position);
+                    float distance = Vector3.Distance(Vector3.ProjectOnPlane(Vector3.up, Camera.main.ScreenToWorldPoint(Input.mousePosition)), Vector3.ProjectOnPlane(Vector3.up, Buttons[i].gameObject.transform.position));
                     if (distance < old_distance)
                     {
                         old_distance = distance;
@@ -71,7 +72,7 @@ public class InteractionScript : MonoBehaviour
     /// </summary>
     void CloseMenu()
     {
-        Button[] Buttons = this.GetComponentsInChildren<Button>();
+        Action[] Buttons = this.GetComponentsInChildren<Action>();
         for (int k = 0; k < Buttons.Length; k++)
         {
             Buttons[k].gameObject.GetComponent<Image>().color = Color.white;

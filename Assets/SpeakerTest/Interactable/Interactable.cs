@@ -4,30 +4,34 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-    public SphereCollider clickableArea;
-    
+    public GameObject ui;
+
     MeshFilter meshFilter;
 
     //ToDo Change type
-    private HashSet<GameObject> affectableAgents;
+    private HashSet<StatePatternEnemy> affectableAgents;
 
     public virtual void Start()
     {
+        affectableAgents = new HashSet<StatePatternEnemy>();
         meshFilter = this.GetComponent<MeshFilter>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
-
+        this.transform.parent.LookAt(Camera.main.transform);
+        ui.transform.eulerAngles = new Vector3(90,180,180);
     }
 
-    protected void RegisterAgent(GameObject agent)
+    protected void RegisterAgent(StatePatternEnemy agent)
     {
+        Debug.Log("Hi agent", agent);
         affectableAgents.Add(agent);
     }
 
-    protected void UnregisterAgent(GameObject agent)
+    protected void UnregisterAgent(StatePatternEnemy agent)
     {
+        Debug.Log("Bye agent", agent);
         affectableAgents.Remove(agent);
     }
 

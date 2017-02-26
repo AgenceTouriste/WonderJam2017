@@ -10,7 +10,7 @@ public class PlayerMovements : MonoBehaviour
     public float rotSpeed;
     public float slowdown;
     public float maxSpeed = 20.0F;
-    public Rigidbody rb;
+    private Rigidbody rb;
     private bool hasSlowdown = true;
     private Vector3 toward;
 

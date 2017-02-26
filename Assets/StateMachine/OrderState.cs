@@ -19,16 +19,12 @@ public class OrderState : IEnemyState
         OrderGoto();
     }
 
-    /*public void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-            ToAlertState();
-    }*/
+    public void OnTriggerEnter(Collider other)
+    { }
 
     public void ToPatrolState()
     {
-        //Debug.Log("Can't transition to this state");
-        enemy.currentState = enemy.patrolState;
+        Debug.Log("Can't transition to this state");
     }
 
     public void ToAlertState()
@@ -48,6 +44,22 @@ public class OrderState : IEnemyState
         enemy.currentState = enemy.owaiterState;
     }
 
+    public void ToDistractState()
+    {
+        enemy.currentState = enemy.distractState;
+    }
+
+    public void ToDWaiterState()
+    { }
+
+    public void ToBlamerState()
+    { }
+
+    public void ToVictimeState()
+    { }
+
+    public void ToLarsenState()
+    { }
 
     private void Look()
     {
