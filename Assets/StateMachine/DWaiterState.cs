@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using System;
 using System.Collections.Generic;
 
-public class ChaseState : IEnemyState
+public class DWaiterState : IEnemyState
 
 {
-
     private readonly StatePatternEnemy enemy;
 
-    public ChaseState(StatePatternEnemy statePatternEnemy)
+    public DWaiterState(StatePatternEnemy statePatternEnemy)
     {
         enemy = statePatternEnemy;
     }
@@ -17,38 +17,42 @@ public class ChaseState : IEnemyState
     public void UpdateState()
     {
         Look();
-        Chase();
+        WaitD();
     }
 
     public void OnTriggerEnter(Collider other)
     { }
 
     public void ToPatrolState()
-    {}
-
-    public void ToAlertState()
     {
-        enemy.currentState = enemy.alertState;
+        //Debug.Log("Can't transition to this state");
+        enemy.currentState = enemy.patrolState;
     }
 
+    public void ToAlertState()
+    { }
     public void ToChaseState()
-    {}
+    {
+        enemy.currentState = enemy.chaseState;
+    }
 
     public void ToOrderState()
     {
-        Debug.Log("Can't transition from alert to order state");
+        Debug.Log("Can't transition to same state");
     }
 
     public void ToOWaiterState()
     {
-        Debug.Log("Can't transition to this state");
+        Debug.Log("Can't transition to same state");
     }
 
     public void ToDistractState()
-    {}
+    {
+        enemy.currentState = enemy.distractState;
+    }
 
     public void ToDWaiterState()
-    { }
+    {}
 
     public void ToBlamerState()
     { }
@@ -67,18 +71,17 @@ public class ChaseState : IEnemyState
             if (obj.CompareTag("Player"))
             {
                 enemy.chaseTarget = obj;
-            }
-            else
-            {
-                ToAlertState();
+                ToChaseState();
             }
         }
     }
 
-    private void Chase()
+    public void WaitD()
     {
-        enemy.GetComponent<MeshRenderer>().material.color = Color.red;
-        enemy.GetComponent<NavMeshAgent>().destination = enemy.chaseTarget.position;
-        enemy.GetComponent<NavMeshAgent>().Resume();
+        enemy.GetComponent<MeshRenderer>().material.color = Color.grey;
+        if (Time.time - enemy.curTime >= enemy.waitD)
+        {
+            ToPatrolState();
+        }
     }
 }
