@@ -24,28 +24,26 @@ public class ChaseState : IEnemyState
     { }
 
     public void ToPatrolState()
-    {}
+    { }
 
     public void ToAlertState()
     {
+        enemy.GetComponent<Animator>().SetBool("isMoving", false);
+        enemy.GetComponent<Animator>().SetBool("isRunning", false);
         enemy.currentState = enemy.alertState;
     }
 
     public void ToChaseState()
-    {}
+    { }
 
     public void ToOrderState()
-    {
-        Debug.Log("Can't transition from alert to order state");
-    }
+    { }
 
     public void ToOWaiterState()
-    {
-        Debug.Log("Can't transition to this state");
-    }
+    { }
 
     public void ToDistractState()
-    {}
+    { }
 
     public void ToDWaiterState()
     { }
@@ -61,7 +59,7 @@ public class ChaseState : IEnemyState
 
     private void Look()
     {
-        bool found=false;
+        bool found = false;
         Transform target = null;
         List<Transform> visibleobjects = enemy.GetComponent<FieldOfView>().visibleTargets;
         foreach (Transform obj in visibleobjects)
@@ -71,7 +69,7 @@ public class ChaseState : IEnemyState
                 target = obj;
                 found = true;
             }
-           
+
         }
         if (found) { enemy.chaseTarget = target; }
         else { ToAlertState(); }

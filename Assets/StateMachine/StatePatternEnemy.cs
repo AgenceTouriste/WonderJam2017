@@ -19,6 +19,7 @@ public class StatePatternEnemy : MonoBehaviour
     public float waitB;
     public float waitL;
 
+
     [HideInInspector]
     public float angleofview;
     [HideInInspector]
@@ -74,6 +75,8 @@ public class StatePatternEnemy : MonoBehaviour
     void Start()
     {
         currentState = patrolState;
+        GetComponent<Animator>().SetBool("isMoving", true);
+        GetComponent<Animator>().SetBool("isRunning", false);
     }
 
     // Update is called once per frame
