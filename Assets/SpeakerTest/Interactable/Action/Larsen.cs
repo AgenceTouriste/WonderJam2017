@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-class Distraction : Action
+class Larsen : Action
 {
     public override void Execute(ICollection<StatePatternEnemy> collection)
     {
-        throw new NotImplementedException();
+        foreach (StatePatternEnemy stuned in collection)
+        {
+            stuned.patrolState.Larsen();
+        }
     }
 }
 

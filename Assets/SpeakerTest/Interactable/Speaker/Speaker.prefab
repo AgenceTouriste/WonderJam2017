@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 222954040187498992}
   - component: {fileID: 114414229616691064}
   - component: {fileID: 114011228992458058}
+  - component: {fileID: 114665387187921936}
   m_Layer: 5
   m_Name: Action 4
   m_TagString: Untagged
@@ -264,7 +265,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1806108835856376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4535662365392502}
@@ -476,6 +477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01ae291491ada64fa0e9bd64d712dd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  truc: {fileID: 114148084419859522}
 --- !u!114 &114308452154218930
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -780,6 +782,18 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114665387187921936
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1474660286883736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4a225ff56338a245a972fa148bf977d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionManager: {fileID: 114212509025456336}
 --- !u!114 &114679371635303122
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -981,7 +995,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135188699570313496
 SphereCollider:
