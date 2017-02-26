@@ -13,7 +13,8 @@ public class Larsen : Action
         {
             stuned.patrolState.Larsen();
         }
-        Destroy(toDestroy);
+        GameObject.Find("SoundSystem").GetComponent<SoundSystem>().PlayLarsen();
+        Destroy(toDestroy,4);
     }
 }
 
