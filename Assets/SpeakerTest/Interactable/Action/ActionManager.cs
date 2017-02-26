@@ -48,6 +48,7 @@ public class ActionManager : MonoBehaviour
             selectedAction.Execute(truc.affectableAgents);
         }
         ResetAction();
+        SendMessageUpwards("HeyAoE");
         gameObject.SetActive(false);
     }
 

@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ExitBlameScene : MonoBehaviour {
+public class ExitLarsenScene : MonoBehaviour
+{
 
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
 
-            SceneManager.LoadScene("OrderScene", LoadSceneMode.Single);
+            //SceneManager.LoadScene("OrderScene", LoadSceneMode.Single);
         }
     }
 }

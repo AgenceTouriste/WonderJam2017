@@ -46,6 +46,7 @@ public class SoundSystem : MonoBehaviour {
     public void PlayLarsen()
     {
         m_audiosource.clip = larsenclips[Random.Range(0, larsenclips.Length)];
+        m_audiosource.volume = 0.2f;
         m_audiosource.Play();
     }
 }
