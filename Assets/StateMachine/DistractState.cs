@@ -93,8 +93,6 @@ public class DistractState : IEnemyState
 
     void OrderGoto()
     {
-        enemy.flag.GetComponent<MeshRenderer>().material.color = Color.blue;
-        //enemy.GetComponent<MeshRenderer>().material.color = Color.black;
         enemy.GetComponent<NavMeshAgent>().destination = enemy.distraction.position;
         enemy.GetComponent<NavMeshAgent>().Resume();
         if (Vector3.Distance(enemy.distraction.position,enemy.transform.position)<4)

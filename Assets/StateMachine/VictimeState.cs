@@ -103,9 +103,6 @@ public class VictimeState : IEnemyState
     }
     public void WaitB()
     {
-        enemy.flag.GetComponent<MeshRenderer>().material.color = Color.white;
-        //enemy.GetComponent<MeshRenderer>().material.color = Color.white;
-
         if (Time.time - enemy.curTime >= enemy.waitB)
         {
             enemy.GetComponent<CapsuleCollider>().isTrigger = false;
