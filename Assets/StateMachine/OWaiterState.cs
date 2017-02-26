@@ -63,7 +63,7 @@ public class OWaiterState : IEnemyState
     public void ToLarsenState()
     { }
 
-    private void Look()
+    /*private void Look()
     {
         List<Transform> visibleobjects = enemy.GetComponent<FieldOfView>().visibleTargets;
         foreach (Transform obj in visibleobjects)
@@ -74,11 +74,27 @@ public class OWaiterState : IEnemyState
                 ToChaseState();
             }
         }
+    }*/
+    private void Look()
+    {
+        bool found = false;
+        Transform target = null;
+        List<Transform> visibleobjects = enemy.GetComponent<FieldOfView>().visibleTargets;
+        foreach (Transform obj in visibleobjects)
+        {
+            if (obj.CompareTag("Player"))
+            {
+                target = obj;
+                found = true;
+            }
+        }
+        if (found) { enemy.chaseTarget = target; ToChaseState(); }
     }
 
     public void WaitO()
     {
-        enemy.GetComponent<MeshRenderer>().material.color = Color.grey;
+        enemy.flag.GetComponent<MeshRenderer>().material.color = Color.grey;
+        //enemy.GetComponent<MeshRenderer>().material.color = Color.grey;
         if (Time.time - enemy.curTime >= enemy.waitO)
         {
             ToPatrolState();

@@ -65,7 +65,7 @@ public class AlertState : IEnemyState
     public void ToLarsenState()
     { }
 
-    private void Look()
+    /*private void Look()
     {
         List<Transform> visibleobjects = enemy.GetComponent<FieldOfView>().visibleTargets;
         foreach (Transform obj in visibleobjects)
@@ -76,11 +76,28 @@ public class AlertState : IEnemyState
                 ToChaseState();
             }
         }
+    */
+    private void Look()
+    {
+        bool found = false;
+        Transform target = null;
+        List<Transform> visibleobjects = enemy.GetComponent<FieldOfView>().visibleTargets;
+        foreach (Transform obj in visibleobjects)
+        {
+            if (obj.CompareTag("Player"))
+            {
+                target = obj;
+                found = true;
+            }
+        }
+        if (found) { enemy.chaseTarget = target; ToChaseState(); }
     }
 
     private void Search()
     {
-        enemy.GetComponent<MeshRenderer>().material.color = Color.yellow;
+        enemy.FOVFlag.GetComponent<MeshRenderer>().material.color = enemy.FOVYellow;
+        enemy.flag.GetComponent<MeshRenderer>().material.color = Color.yellow;
+        //enemy.GetComponent<MeshRenderer>().material.color = Color.yellow;
         enemy.GetComponent<NavMeshAgent>().Stop();
         enemy.transform.Rotate(0, enemy.searchingTurnSpeed * Time.deltaTime, 0);
         searchTimer += Time.deltaTime;

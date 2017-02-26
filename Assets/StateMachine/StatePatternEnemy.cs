@@ -9,6 +9,11 @@ public class StatePatternEnemy : MonoBehaviour
     public Transform[] wayPoints;
     public int direction = 0;
     public Transform camp;
+    public GameObject flag;
+    public GameObject FOVFlag;
+    public Color FOVWhite;
+    public Color FOVYellow;
+    public Color FOVRed;
 
     public float waitO;
     public float waitD;
@@ -23,7 +28,7 @@ public class StatePatternEnemy : MonoBehaviour
     public Transform distraction;
     [HideInInspector]
     public float curTime;
-    [HideInInspector]
+    [HideInInspector]   
     public Transform chaseTarget;
     [HideInInspector]
     public IEnemyState currentState;

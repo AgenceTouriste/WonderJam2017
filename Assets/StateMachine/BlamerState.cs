@@ -59,22 +59,38 @@ public class BlamerState : IEnemyState
     public void ToLarsenState()
     { }
 
+    /* private void Look()
+     {
+         List<Transform> visibleobjects = enemy.GetComponent<FieldOfView>().visibleTargets;
+         foreach (Transform obj in visibleobjects)
+         {
+             if (obj.CompareTag("Player"))
+             {
+                 enemy.chaseTarget = obj;
+                 ToChaseState();
+             }
+         }
+     }*/
     private void Look()
     {
+        bool found = false;
+        Transform target = null;
         List<Transform> visibleobjects = enemy.GetComponent<FieldOfView>().visibleTargets;
         foreach (Transform obj in visibleobjects)
         {
             if (obj.CompareTag("Player"))
             {
-                enemy.chaseTarget = obj;
-                ToChaseState();
+                target = obj;
+                found = true;
             }
         }
+        if (found) { enemy.chaseTarget = target; ToChaseState(); }
     }
 
     void OrderGoto()
     {
-        enemy.GetComponent<MeshRenderer>().material.color = Color.magenta;
+        enemy.flag.GetComponent<MeshRenderer>().material.color = Color.magenta;
+        //enemy.GetComponent<MeshRenderer>().material.color = Color.magenta;
         if (Time.time - enemy.curTime >= enemy.waitB)
         {
             ToPatrolState();
