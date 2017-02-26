@@ -10,7 +10,27 @@ public class Blame : Action
     public bool ready;
     public GameObject bizut;
     public BlameSelector blameSelector;
+    public Canvas overlay;
 
+    private void Start()
+    {
+        ready = false;
+    }
+    private void Update()
+    {
+        if(ready)
+        {
+            if(Input.GetKeyDown("space"))
+            {
+                blameSelector.gameObject.SetActive(false);
+                overlay.gameObject.SetActive(false);
+                gameObject.GetComponentInParent<Canvas>().enabled = true;
+                ready = false;
+                actionManager.ResetAction();
+                actionManager.SendMessage("SpecialBlameExecutor");
+            }
+        }
+    }
     public override void Execute(ICollection<StatePatternEnemy> collection)
     {
         bizut.GetComponent<StatePatternEnemy>().patrolState.Victimize();
@@ -31,12 +51,18 @@ public class Blame : Action
         {
             bizut = input;
             actionManager.SendMessage("SpecialBlameExecutor");
+            overlay.gameObject.SetActive(false);
+            gameObject.GetComponentInParent<Canvas>().enabled = true;
+            ready = false;
         }
     }
 
     public void ActivateBlameSelector()
     {
+        ready = true;
+        overlay.gameObject.SetActive(true);
         blameSelector.gameObject.SetActive(true);
+        gameObject.GetComponentInParent<Canvas>().enabled = false;
     }
     public override void OnPointerExit(PointerEventData eventData)
     {
