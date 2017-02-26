@@ -21,7 +21,7 @@ public class UIController_TitleScreen : MonoBehaviour {
     public void onNewGameButtonClicked()
     {
         // Change scene
-        // SceneManager.LoadScene("IntroScene");
+       SceneManager.LoadScene("IntroScene", LoadSceneMode.Single);
     }
 
     public void onCreditsButtonClicked()

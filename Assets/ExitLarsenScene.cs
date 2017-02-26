@@ -11,7 +11,7 @@ public class ExitLarsenScene : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
 
-            //SceneManager.LoadScene("OrderScene", LoadSceneMode.Single);
+            SceneManager.LoadScene("FinalScene", LoadSceneMode.Single);
         }
     }
 }

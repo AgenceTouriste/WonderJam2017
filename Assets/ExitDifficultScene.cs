@@ -10,7 +10,7 @@ public class ExitDifficultScene : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene("BlameSceneClean", LoadSceneMode.Single);
+            SceneManager.LoadScene("MixLevelScene", LoadSceneMode.Single);
         }
     }
 }
