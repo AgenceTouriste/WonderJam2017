@@ -11,11 +11,6 @@ public class SoundSystem : MonoBehaviour {
     public AudioClip[] orderclips;
     public AudioClip[] gameoverclips;
 
-    public Text[] distracttext;
-    public Text[] blametext;
-    public Text[] ordertext;
-    public Text[] gameovertext;
-
     AudioSource m_audiosource;
 
 
