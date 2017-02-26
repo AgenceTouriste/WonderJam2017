@@ -19,6 +19,15 @@ public class PlayerMovements : MonoBehaviour
         toward = transform.forward;
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy")) {
+            Time.timeScale = 0.2f;
+            BroadcastMessage("OnDeath");
+            this.enabled = false;
+        }
+    }
+
     void FixedUpdate()
     {
         Move();
@@ -93,5 +102,7 @@ public class PlayerMovements : MonoBehaviour
         //    GetComponent<Animator>().SetBool("isRunning", false);
         //}
     }
+
+    
 
 }
