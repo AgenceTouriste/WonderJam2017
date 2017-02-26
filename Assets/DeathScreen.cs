@@ -18,7 +18,7 @@ public class DeathScreen : MonoBehaviour {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
             }
 
-            if (Input.GetKey(KeyCode.T))
+            if (Input.GetKey(KeyCode.Escape))
             {
                 Application.Quit();
             }
