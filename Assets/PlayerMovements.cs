@@ -22,9 +22,12 @@ public class PlayerMovements : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy")) {
+            GameObject.Find("SoundSystem").GetComponent<SoundSystem>().PlayGameOver();
+
             Time.timeScale = 0.2f;
             BroadcastMessage("OnDeath");
-            this.enabled = false;
+            GetComponent<CapsuleCollider>().enabled = false;            
+            enabled = false;
         }
     }
 
