@@ -9,7 +9,6 @@ public class StatePatternEnemy : MonoBehaviour
     public Transform[] wayPoints;
     public int direction = 0;
     public Transform camp;
-    public GameObject flag;
     public GameObject FOVFlag;
     public Color FOVWhite;
     public Color FOVYellow;

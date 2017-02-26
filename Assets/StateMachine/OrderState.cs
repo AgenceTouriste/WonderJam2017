@@ -92,12 +92,11 @@ public class OrderState : IEnemyState
 
     void OrderGoto()
     {
-        enemy.flag.GetComponent<MeshRenderer>().material.color = Color.cyan;
-        //enemy.GetComponent<MeshRenderer>().material.color = Color.cyan;
         enemy.GetComponent<NavMeshAgent>().destination = enemy.camp.position;
         enemy.GetComponent<NavMeshAgent>().Resume();
-        if (enemy.GetComponent<NavMeshAgent>().remainingDistance <= enemy.GetComponent<NavMeshAgent>().stoppingDistance && !enemy.GetComponent<NavMeshAgent>().pathPending)
-            {
+        if (Vector3.Distance(enemy.camp.position, enemy.transform.position) < 4)
+        //if (enemy.GetComponent<NavMeshAgent>().remainingDistance <= enemy.GetComponent<NavMeshAgent>().stoppingDistance && !enemy.GetComponent<NavMeshAgent>().pathPending)
+        {
             enemy.curTime = Time.time;
             ToOWaiterState();
         }

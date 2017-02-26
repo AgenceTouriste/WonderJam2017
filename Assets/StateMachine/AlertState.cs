@@ -96,8 +96,6 @@ public class AlertState : IEnemyState
     private void Search()
     {
         enemy.FOVFlag.GetComponent<MeshRenderer>().material.color = enemy.FOVYellow;
-        enemy.flag.GetComponent<MeshRenderer>().material.color = Color.yellow;
-        //enemy.GetComponent<MeshRenderer>().material.color = Color.yellow;
         enemy.GetComponent<NavMeshAgent>().Stop();
         enemy.transform.Rotate(0, enemy.searchingTurnSpeed * Time.deltaTime, 0);
         searchTimer += Time.deltaTime;

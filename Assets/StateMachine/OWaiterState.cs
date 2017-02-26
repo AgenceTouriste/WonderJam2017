@@ -93,8 +93,6 @@ public class OWaiterState : IEnemyState
 
     public void WaitO()
     {
-        enemy.flag.GetComponent<MeshRenderer>().material.color = Color.grey;
-        //enemy.GetComponent<MeshRenderer>().material.color = Color.grey;
         if (Time.time - enemy.curTime >= enemy.waitO)
         {
             ToPatrolState();

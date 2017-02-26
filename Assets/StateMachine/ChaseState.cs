@@ -80,8 +80,6 @@ public class ChaseState : IEnemyState
     private void Chase()
     {
         enemy.FOVFlag.GetComponent<MeshRenderer>().material.color = enemy.FOVRed;
-        enemy.flag.GetComponent<MeshRenderer>().material.color = Color.red;
-        //enemy.GetComponent<MeshRenderer>().material.color = Color.red;
         enemy.GetComponent<NavMeshAgent>().destination = enemy.chaseTarget.position;
         enemy.GetComponent<NavMeshAgent>().Resume();
     }

@@ -56,8 +56,6 @@ public class LarsenState : IEnemyState
     public void Stuned()
     {
         enemy.GetComponent<NavMeshAgent>().Stop();
-        enemy.flag.GetComponent<MeshRenderer>().material.color = new Color(0.5f, 0, 0, 1);
-        //enemy.GetComponent<MeshRenderer>().material.color = new Color(0.5f , 0 , 0 , 1);
         if (Time.time - enemy.curTime >= enemy.waitL)
         {
             enemy.GetComponent<FieldOfView>().viewRadius = enemy.angleofview;

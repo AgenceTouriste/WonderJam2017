@@ -93,8 +93,6 @@ public class DWaiterState : IEnemyState
 
     public void WaitD()
     {
-        enemy.flag.GetComponent<MeshRenderer>().material.color = Color.grey;
-        //enemy.GetComponent<MeshRenderer>().material.color = Color.grey;
         if (Time.time - enemy.curTime >= enemy.waitD)
         {
             ToPatrolState();

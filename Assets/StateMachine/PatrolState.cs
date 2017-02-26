@@ -91,7 +91,6 @@ public class PatrolState : IEnemyState
     void Patrol()
     {
         enemy.FOVFlag.GetComponent<MeshRenderer>().material.color = enemy.FOVWhite;
-        enemy.flag.GetComponent<MeshRenderer>().material.color = Color.green;
         if (enemy.wayPoints.Length > 1)
         {
             enemy.GetComponent<NavMeshAgent>().destination = enemy.wayPoints[nextWayPoint].position;
