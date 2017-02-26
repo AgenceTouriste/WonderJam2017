@@ -9,12 +9,18 @@ public class StatePatternEnemy : MonoBehaviour
     public Transform[] wayPoints;
     public int direction = 0;
     public Transform camp;
+
     public float waitO;
     public float waitD;
     public float waitB;
     public float waitL;
 
-
+    [HideInInspector]
+    public float angleofview;
+    [HideInInspector]
+    public Transform bullied;
+    [HideInInspector]
+    public Transform distraction;
     [HideInInspector]
     public float curTime;
     [HideInInspector]
@@ -32,7 +38,17 @@ public class StatePatternEnemy : MonoBehaviour
     [HideInInspector]
     public OWaiterState owaiterState;
     [HideInInspector]
-    public NavMeshAgent navMeshAgent;
+    public DistractState distractState;
+    [HideInInspector]
+    public DWaiterState dwaiterState;
+    [HideInInspector]
+    public BlamerState blamerState;
+    [HideInInspector]
+    public VictimeState victimeState;
+    [HideInInspector]
+    public LarsenState larsenState;
+    [HideInInspector]
+    public UnityEngine.AI.NavMeshAgent navMeshAgent;
 
     private void Awake()
     {
@@ -41,6 +57,11 @@ public class StatePatternEnemy : MonoBehaviour
         patrolState = new PatrolState(this);
         orderState = new OrderState(this);
         owaiterState = new OWaiterState(this);
+        distractState = new DistractState(this);
+        dwaiterState = new DWaiterState(this);
+        blamerState = new BlamerState(this);
+        victimeState = new VictimeState(this);
+        larsenState = new LarsenState(this);
 
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
@@ -57,8 +78,8 @@ public class StatePatternEnemy : MonoBehaviour
         currentState.UpdateState();
     }
 
-   /* private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         currentState.OnTriggerEnter(other);
-    }*/
+    }
 }
