@@ -32,7 +32,7 @@ public class StatePatternEnemy : MonoBehaviour
     [HideInInspector]
     public OWaiterState owaiterState;
     [HideInInspector]
-    public UnityEngine.AI.NavMeshAgent navMeshAgent;
+    public NavMeshAgent navMeshAgent;
 
     private void Awake()
     {
