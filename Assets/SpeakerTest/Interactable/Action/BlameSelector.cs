@@ -16,11 +16,14 @@ public class BlameSelector : MonoBehaviour
             LayerMask mask = LayerMask.NameToLayer("Enemies");
             if (Physics.Raycast(ray, out hit))
             {
-                GameObject tmp = hit.collider.gameObject;
-                if(tmp.GetComponent<StatePatternEnemy>().currentState is PatrolState)
+                if (hit.collider != null)
                 {
-                    blame.SendMessage("OnBizutFound", tmp);
-                    gameObject.SetActive(false);
+                    GameObject tmp = hit.collider.gameObject;
+                    if (tmp.GetComponent<StatePatternEnemy>().currentState is PatrolState)
+                    {
+                        blame.SendMessage("OnBizutFound", tmp);
+                        gameObject.SetActive(false);
+                    }
                 }
             }
         }
