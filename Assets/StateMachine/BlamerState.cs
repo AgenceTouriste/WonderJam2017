@@ -3,12 +3,12 @@ using UnityEngine.AI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class OrderState : IEnemyState
+public class BlamerState : IEnemyState
 
 {
     private readonly StatePatternEnemy enemy;
 
-    public OrderState(StatePatternEnemy statePatternEnemy)
+    public BlamerState(StatePatternEnemy statePatternEnemy)
     {
         enemy = statePatternEnemy;
     }
@@ -20,15 +20,15 @@ public class OrderState : IEnemyState
     }
 
     public void OnTriggerEnter(Collider other)
-    { }
+    {}
 
     public void ToPatrolState()
     {
-        Debug.Log("Can't transition to this state");
+        enemy.currentState = enemy.patrolState;
     }
 
     public void ToAlertState()
-    {}
+    { }
     public void ToChaseState()
     {
         enemy.currentState = enemy.chaseState;
@@ -40,9 +40,7 @@ public class OrderState : IEnemyState
     }
 
     public void ToOWaiterState()
-    {
-        enemy.currentState = enemy.owaiterState;
-    }
+    {  }
 
     public void ToDistractState()
     {
@@ -50,7 +48,7 @@ public class OrderState : IEnemyState
     }
 
     public void ToDWaiterState()
-    { }
+    {}
 
     public void ToBlamerState()
     { }
@@ -76,13 +74,26 @@ public class OrderState : IEnemyState
 
     void OrderGoto()
     {
-        enemy.GetComponent<MeshRenderer>().material.color = Color.cyan;
-        enemy.GetComponent<NavMeshAgent>().destination = enemy.camp.position;
-        enemy.GetComponent<NavMeshAgent>().Resume();
-        if (enemy.GetComponent<NavMeshAgent>().remainingDistance <= enemy.GetComponent<NavMeshAgent>().stoppingDistance && !enemy.GetComponent<NavMeshAgent>().pathPending)
-            {
-            enemy.curTime = Time.time;
-            ToOWaiterState();
+        enemy.GetComponent<MeshRenderer>().material.color = Color.magenta;
+        if (Time.time - enemy.curTime >= enemy.waitB)
+        {
+            ToPatrolState();
         }
+        else
+        {
+            if (Vector3.Distance(enemy.bullied.position, enemy.transform.position) > 2)
+            {
+                enemy.GetComponent<NavMeshAgent>().destination = enemy.bullied.position;
+                enemy.GetComponent<NavMeshAgent>().Resume();
+            }
+        }
+        /*enemy.GetComponent<NavMeshAgent>().destination = enemy.bullied.position;
+        enemy.GetComponent<NavMeshAgent>().Resume();
+        if (Vector3.Distance(enemy.distraction.position, enemy.transform.position) < 2)
+        if (enemy.GetComponent<NavMeshAgent>().remainingDistance <= enemy.GetComponent<NavMeshAgent>().stoppingDistance && !enemy.GetComponent<NavMeshAgent>().pathPending)
+        {
+            
+            ToDWaiterState();
+        }*/
     }
 }

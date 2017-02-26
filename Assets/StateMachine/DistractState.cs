@@ -3,12 +3,12 @@ using UnityEngine.AI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class OrderState : IEnemyState
+public class DistractState : IEnemyState
 
 {
     private readonly StatePatternEnemy enemy;
 
-    public OrderState(StatePatternEnemy statePatternEnemy)
+    public DistractState(StatePatternEnemy statePatternEnemy)
     {
         enemy = statePatternEnemy;
     }
@@ -50,7 +50,9 @@ public class OrderState : IEnemyState
     }
 
     public void ToDWaiterState()
-    { }
+    {
+        enemy.currentState = enemy.dwaiterState;
+    }
 
     public void ToBlamerState()
     { }
@@ -76,13 +78,14 @@ public class OrderState : IEnemyState
 
     void OrderGoto()
     {
-        enemy.GetComponent<MeshRenderer>().material.color = Color.cyan;
-        enemy.GetComponent<NavMeshAgent>().destination = enemy.camp.position;
+        enemy.GetComponent<MeshRenderer>().material.color = Color.black;
+        enemy.GetComponent<NavMeshAgent>().destination = enemy.distraction.position;
         enemy.GetComponent<NavMeshAgent>().Resume();
-        if (enemy.GetComponent<NavMeshAgent>().remainingDistance <= enemy.GetComponent<NavMeshAgent>().stoppingDistance && !enemy.GetComponent<NavMeshAgent>().pathPending)
-            {
+        if (Vector3.Distance(enemy.distraction.position,enemy.transform.position)<2)
+        //if (enemy.GetComponent<NavMeshAgent>().remainingDistance <= enemy.GetComponent<NavMeshAgent>().stoppingDistance && !enemy.GetComponent<NavMeshAgent>().pathPending)
+        {
             enemy.curTime = Time.time;
-            ToOWaiterState();
+            ToDWaiterState();
         }
     }
 }

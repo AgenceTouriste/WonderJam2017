@@ -20,11 +20,8 @@ public class OWaiterState : IEnemyState
         WaitO();
     }
 
-    /*public void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-            ToAlertState();
-    }*/
+    public void OnTriggerEnter(Collider other)
+    { }
 
     public void ToPatrolState()
     {
@@ -48,6 +45,23 @@ public class OWaiterState : IEnemyState
     {
         Debug.Log("Can't transition to same state");
     }
+
+    public void ToDistractState()
+    {
+        enemy.currentState = enemy.distractState;
+    }
+
+    public void ToDWaiterState()
+    { }
+
+    public void ToBlamerState()
+    { }
+
+    public void ToVictimeState()
+    { }
+
+    public void ToLarsenState()
+    { }
 
     private void Look()
     {

@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using System;
 using System.Collections.Generic;
 
-public class OrderState : IEnemyState
+public class VictimeState : IEnemyState
 
 {
     private readonly StatePatternEnemy enemy;
 
-    public OrderState(StatePatternEnemy statePatternEnemy)
+    public VictimeState(StatePatternEnemy statePatternEnemy)
     {
         enemy = statePatternEnemy;
     }
@@ -16,19 +17,23 @@ public class OrderState : IEnemyState
     public void UpdateState()
     {
         Look();
-        OrderGoto();
+        WaitB();
     }
 
     public void OnTriggerEnter(Collider other)
-    { }
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+            enemy.GetComponent<NavMeshAgent>().Stop();
+    }
 
     public void ToPatrolState()
     {
-        Debug.Log("Can't transition to this state");
+        //Debug.Log("Can't transition to this state");
+        enemy.currentState = enemy.patrolState;
     }
 
     public void ToAlertState()
-    {}
+    { }
     public void ToChaseState()
     {
         enemy.currentState = enemy.chaseState;
@@ -41,7 +46,7 @@ public class OrderState : IEnemyState
 
     public void ToOWaiterState()
     {
-        enemy.currentState = enemy.owaiterState;
+        Debug.Log("Can't transition to same state");
     }
 
     public void ToDistractState()
@@ -69,20 +74,22 @@ public class OrderState : IEnemyState
             if (obj.CompareTag("Player"))
             {
                 enemy.chaseTarget = obj;
+                enemy.GetComponent<BoxCollider>().isTrigger = false;
+                enemy.GetComponent<BoxCollider>().size = new Vector3(1, 1, 1);
                 ToChaseState();
             }
         }
     }
 
-    void OrderGoto()
+    public void WaitB()
     {
-        enemy.GetComponent<MeshRenderer>().material.color = Color.cyan;
-        enemy.GetComponent<NavMeshAgent>().destination = enemy.camp.position;
-        enemy.GetComponent<NavMeshAgent>().Resume();
-        if (enemy.GetComponent<NavMeshAgent>().remainingDistance <= enemy.GetComponent<NavMeshAgent>().stoppingDistance && !enemy.GetComponent<NavMeshAgent>().pathPending)
-            {
-            enemy.curTime = Time.time;
-            ToOWaiterState();
+        enemy.GetComponent<MeshRenderer>().material.color = Color.white;
+        
+        if (Time.time - enemy.curTime >= enemy.waitB)
+        {
+            enemy.GetComponent<BoxCollider>().isTrigger = false;
+            enemy.GetComponent<BoxCollider>().size = new Vector3(1, 1, 1);
+            ToPatrolState();
         }
     }
 }
