@@ -21,4 +21,9 @@ public class Speaker : Interactable
         if (other.CompareTag("Enemy"))
             UnregisterAgent(other.GetComponent<StatePatternEnemy>());
     }
+
+    private void TriggerAoE()
+    {
+        GetComponent<MeshRenderer>().enabled = !GetComponent<MeshRenderer>().enabled;
+    }
 }
