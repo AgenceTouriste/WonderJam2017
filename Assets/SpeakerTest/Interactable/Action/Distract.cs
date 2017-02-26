@@ -12,6 +12,7 @@ class Distract : Action
         foreach (StatePatternEnemy stuned in collection)
         {
             stuned.distraction = distraction.transform;
+            GameObject.Find("SoundSystem").GetComponent<SoundSystem>().PlayDistract();
             stuned.patrolState.Distract();
         }
     }

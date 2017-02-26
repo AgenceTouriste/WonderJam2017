@@ -22,6 +22,7 @@ public class BlameSelector : MonoBehaviour
                     if (tmp.GetComponent<StatePatternEnemy>().currentState is PatrolState)
                     {
                         blame.SendMessage("OnBizutFound", tmp);
+                        GameObject.Find("SoundSystem").GetComponent<SoundSystem>().PlayBlame();
                         gameObject.SetActive(false);
                     }
                 }

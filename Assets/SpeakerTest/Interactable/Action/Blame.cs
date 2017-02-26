@@ -47,7 +47,6 @@ public class Blame : Action
 
     public void OnBizutFound(GameObject input)
     {
-        if (this.gameObject.activeInHierarchy)
         {
             bizut = input;
             actionManager.SendMessage("SpecialBlameExecutor");

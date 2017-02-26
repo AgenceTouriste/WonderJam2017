@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 class Order : Action
 {
@@ -11,6 +12,7 @@ class Order : Action
         {
             stuned.patrolState.Order();
         }
+        GameObject.Find("SoundSystem").GetComponent<SoundSystem>().PlayOrder();
     }
 }
 
