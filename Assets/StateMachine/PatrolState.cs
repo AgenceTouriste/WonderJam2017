@@ -71,22 +71,27 @@ public class PatrolState : IEnemyState
         enemy.currentState = enemy.larsenState;
     }
 
+   
     private void Look()
     {
+        bool found = false;
+        Transform target = null;
         List<Transform> visibleobjects = enemy.GetComponent<FieldOfView>().visibleTargets;
         foreach (Transform obj in visibleobjects)
         {
             if (obj.CompareTag("Player"))
             {
-                enemy.chaseTarget = obj;
-                ToChaseState();
+                target = obj;
+                found = true;
             }
         }
+        if (found) { enemy.chaseTarget = target; ToChaseState(); }
     }
 
     void Patrol()
     {
-        enemy.GetComponent<MeshRenderer>().material.color = Color.green;
+        enemy.FOVFlag.GetComponent<MeshRenderer>().material.color = enemy.FOVWhite;
+        enemy.flag.GetComponent<MeshRenderer>().material.color = Color.green;
         if (enemy.wayPoints.Length > 1)
         {
             enemy.GetComponent<NavMeshAgent>().destination = enemy.wayPoints[nextWayPoint].position;
@@ -159,8 +164,8 @@ public class PatrolState : IEnemyState
             )
         {
             enemy.curTime = Time.time;
-            enemy.GetComponent<BoxCollider>().isTrigger = true;
-            enemy.GetComponent<BoxCollider>().size = new Vector3(2, 1, 2);
+            enemy.GetComponent<CapsuleCollider>().isTrigger = true;
+            enemy.GetComponent<CapsuleCollider>().radius = 2.24f;
             ToVictimeState();
         }
     }

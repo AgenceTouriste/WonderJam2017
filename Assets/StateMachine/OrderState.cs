@@ -61,7 +61,7 @@ public class OrderState : IEnemyState
     public void ToLarsenState()
     { }
 
-    private void Look()
+    /*private void Look()
     {
         List<Transform> visibleobjects = enemy.GetComponent<FieldOfView>().visibleTargets;
         foreach (Transform obj in visibleobjects)
@@ -72,11 +72,28 @@ public class OrderState : IEnemyState
                 ToChaseState();
             }
         }
+    }*/
+
+    private void Look()
+    {
+        bool found = false;
+        Transform target = null;
+        List<Transform> visibleobjects = enemy.GetComponent<FieldOfView>().visibleTargets;
+        foreach (Transform obj in visibleobjects)
+        {
+            if (obj.CompareTag("Player"))
+            {
+                target = obj;
+                found = true;
+            }
+        }
+        if (found) { enemy.chaseTarget = target; ToChaseState(); }
     }
 
     void OrderGoto()
     {
-        enemy.GetComponent<MeshRenderer>().material.color = Color.cyan;
+        enemy.flag.GetComponent<MeshRenderer>().material.color = Color.cyan;
+        //enemy.GetComponent<MeshRenderer>().material.color = Color.cyan;
         enemy.GetComponent<NavMeshAgent>().destination = enemy.camp.position;
         enemy.GetComponent<NavMeshAgent>().Resume();
         if (enemy.GetComponent<NavMeshAgent>().remainingDistance <= enemy.GetComponent<NavMeshAgent>().stoppingDistance && !enemy.GetComponent<NavMeshAgent>().pathPending)

@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public abstract class Action : MonoBehaviour {
+public abstract class Action : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
 
     public ActionManager actionManager;
@@ -13,20 +15,22 @@ public abstract class Action : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
 	}
 
-    private void OnMouseEnter()
+    private void OnMouseOver()
     {
-        actionManager.ChooseAction(this);
-        //Change texture to selected
-        //Set self as selected button
+        Debug.Log("TROLLLLLL");
     }
 
-    private void OnMouseExit()
+    public abstract void Execute(ICollection<StatePatternEnemy> collection);
+
+    public virtual void OnPointerExit(PointerEventData eventData)
     {
         actionManager.ResetAction();
-        //Change texture to unselected
-        //Reset selected button
+    }
+
+    public virtual void OnPointerEnter(PointerEventData eventData)
+    {
+        actionManager.ChooseAction(this); 
     }
 }

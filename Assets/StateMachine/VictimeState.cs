@@ -65,8 +65,8 @@ public class VictimeState : IEnemyState
 
     public void ToLarsenState()
     { }
-
-    private void Look()
+    
+    /*private void Look()
     {
         List<Transform> visibleobjects = enemy.GetComponent<FieldOfView>().visibleTargets;
         foreach (Transform obj in visibleobjects)
@@ -74,21 +74,42 @@ public class VictimeState : IEnemyState
             if (obj.CompareTag("Player"))
             {
                 enemy.chaseTarget = obj;
-                enemy.GetComponent<BoxCollider>().isTrigger = false;
-                enemy.GetComponent<BoxCollider>().size = new Vector3(1, 1, 1);
+                enemy.GetComponent<CapsuleCollider>().isTrigger = false;
+                enemy.GetComponent<CapsuleCollider>().radius = 1.12f;
                 ToChaseState();
             }
         }
+    }*/
+    private void Look()
+    {
+        bool found = false;
+        Transform target = null;
+        List<Transform> visibleobjects = enemy.GetComponent<FieldOfView>().visibleTargets;
+        foreach (Transform obj in visibleobjects)
+        {
+            if (obj.CompareTag("Player"))
+            {
+                target = obj;
+                found = true;
+            }
+        }
+        if (found)
+        {
+            enemy.chaseTarget = target;
+            enemy.GetComponent<CapsuleCollider>().isTrigger = false;
+            enemy.GetComponent<CapsuleCollider>().radius = 1.12f;
+            ToChaseState();
+        }
     }
-
     public void WaitB()
     {
-        enemy.GetComponent<MeshRenderer>().material.color = Color.white;
-        
+        enemy.flag.GetComponent<MeshRenderer>().material.color = Color.white;
+        //enemy.GetComponent<MeshRenderer>().material.color = Color.white;
+
         if (Time.time - enemy.curTime >= enemy.waitB)
         {
-            enemy.GetComponent<BoxCollider>().isTrigger = false;
-            enemy.GetComponent<BoxCollider>().size = new Vector3(1, 1, 1);
+            enemy.GetComponent<CapsuleCollider>().isTrigger = false;
+            enemy.GetComponent<CapsuleCollider>().radius = 1.12f;
             ToPatrolState();
         }
     }

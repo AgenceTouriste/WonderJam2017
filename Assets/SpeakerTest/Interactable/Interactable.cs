@@ -9,7 +9,7 @@ public abstract class Interactable : MonoBehaviour
     MeshFilter meshFilter;
 
     //ToDo Change type
-    private HashSet<StatePatternEnemy> affectableAgents;
+    public HashSet<StatePatternEnemy> affectableAgents;
 
     public virtual void Start()
     {

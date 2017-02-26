@@ -61,23 +61,27 @@ public class ChaseState : IEnemyState
 
     private void Look()
     {
+        bool found=false;
+        Transform target = null;
         List<Transform> visibleobjects = enemy.GetComponent<FieldOfView>().visibleTargets;
         foreach (Transform obj in visibleobjects)
         {
             if (obj.CompareTag("Player"))
             {
-                enemy.chaseTarget = obj;
+                target = obj;
+                found = true;
             }
-            else
-            {
-                ToAlertState();
-            }
+           
         }
+        if (found) { enemy.chaseTarget = target; }
+        else { ToAlertState(); }
     }
 
     private void Chase()
     {
-        enemy.GetComponent<MeshRenderer>().material.color = Color.red;
+        enemy.FOVFlag.GetComponent<MeshRenderer>().material.color = enemy.FOVRed;
+        enemy.flag.GetComponent<MeshRenderer>().material.color = Color.red;
+        //enemy.GetComponent<MeshRenderer>().material.color = Color.red;
         enemy.GetComponent<NavMeshAgent>().destination = enemy.chaseTarget.position;
         enemy.GetComponent<NavMeshAgent>().Resume();
     }
