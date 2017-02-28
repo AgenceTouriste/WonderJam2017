@@ -25,7 +25,8 @@ public class DWaiterState : IEnemyState
 
     public void ToPatrolState()
     {
-        //Debug.Log("Can't transition to this state");
+        enemy.GetComponent<Animator>().SetBool("isMoving", true);
+        enemy.GetComponent<Animator>().SetBool("isRunning", false);
         enemy.currentState = enemy.patrolState;
     }
 
@@ -33,26 +34,22 @@ public class DWaiterState : IEnemyState
     { }
     public void ToChaseState()
     {
+        enemy.GetComponent<Animator>().SetBool("isMoving", false);
+        enemy.GetComponent<Animator>().SetBool("isRunning", true);
         enemy.currentState = enemy.chaseState;
     }
 
     public void ToOrderState()
-    {
-        Debug.Log("Can't transition to same state");
-    }
+    { }
 
     public void ToOWaiterState()
-    {
-        Debug.Log("Can't transition to same state");
-    }
+    { }
 
     public void ToDistractState()
-    {
-        enemy.currentState = enemy.distractState;
-    }
+    { }
 
     public void ToDWaiterState()
-    {}
+    { }
 
     public void ToBlamerState()
     { }
@@ -63,18 +60,7 @@ public class DWaiterState : IEnemyState
     public void ToLarsenState()
     { }
 
-    /*private void Look()
-    {
-        List<Transform> visibleobjects = enemy.GetComponent<FieldOfView>().visibleTargets;
-        foreach (Transform obj in visibleobjects)
-        {
-            if (obj.CompareTag("Player"))
-            {
-                enemy.chaseTarget = obj;
-                ToChaseState();
-            }
-        }
-    }*/
+
     private void Look()
     {
         bool found = false;

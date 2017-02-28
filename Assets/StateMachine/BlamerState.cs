@@ -20,10 +20,12 @@ public class BlamerState : IEnemyState
     }
 
     public void OnTriggerEnter(Collider other)
-    {}
+    { }
 
     public void ToPatrolState()
     {
+        enemy.GetComponent<Animator>().SetBool("isMoving", true);
+        enemy.GetComponent<Animator>().SetBool("isRunning", false);
         enemy.currentState = enemy.patrolState;
     }
 
@@ -31,24 +33,22 @@ public class BlamerState : IEnemyState
     { }
     public void ToChaseState()
     {
+        enemy.GetComponent<Animator>().SetBool("isMoving", false);
+        enemy.GetComponent<Animator>().SetBool("isRunning", true);
         enemy.currentState = enemy.chaseState;
     }
 
     public void ToOrderState()
-    {
-        Debug.Log("Can't transition to same state");
-    }
+    { }
 
     public void ToOWaiterState()
-    {  }
+    { }
 
     public void ToDistractState()
-    {
-        enemy.currentState = enemy.distractState;
-    }
+    { }
 
     public void ToDWaiterState()
-    {}
+    { }
 
     public void ToBlamerState()
     { }
@@ -59,18 +59,7 @@ public class BlamerState : IEnemyState
     public void ToLarsenState()
     { }
 
-    /* private void Look()
-     {
-         List<Transform> visibleobjects = enemy.GetComponent<FieldOfView>().visibleTargets;
-         foreach (Transform obj in visibleobjects)
-         {
-             if (obj.CompareTag("Player"))
-             {
-                 enemy.chaseTarget = obj;
-                 ToChaseState();
-             }
-         }
-     }*/
+
     private void Look()
     {
         bool found = false;
@@ -101,13 +90,5 @@ public class BlamerState : IEnemyState
                 enemy.GetComponent<NavMeshAgent>().Resume();
             }
         }
-        /*enemy.GetComponent<NavMeshAgent>().destination = enemy.bullied.position;
-        enemy.GetComponent<NavMeshAgent>().Resume();
-        if (Vector3.Distance(enemy.distraction.position, enemy.transform.position) < 2)
-        if (enemy.GetComponent<NavMeshAgent>().remainingDistance <= enemy.GetComponent<NavMeshAgent>().stoppingDistance && !enemy.GetComponent<NavMeshAgent>().pathPending)
-        {
-            
-            ToDWaiterState();
-        }*/
     }
 }
